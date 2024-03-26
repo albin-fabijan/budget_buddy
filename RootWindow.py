@@ -1,6 +1,5 @@
 import tkinter as tk
 
-from FirstController import FirstController
 from HeaderController import HeaderController
 
 class RootWindow(tk.Tk):
