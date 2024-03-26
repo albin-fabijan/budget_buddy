@@ -1,4 +1,4 @@
-class Model:
+class FirstModel:
     def __init__(self):
         self.__thing = 0
 
