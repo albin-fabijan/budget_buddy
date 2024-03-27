@@ -57,8 +57,3 @@ class DisplayLoginPage(tk.Tk):
         clickable_text = tk.Label(self.frame, text="Pas encore de compte ? Inscrivez-vous", font=("Arial", 26), bg='#72D5FF')
         clickable_text.pack(side=tk.TOP, pady=20)
         #clickable_text.bind("<Button-1>", self.open_registration_page)
-
-
-if __name__ == "__main__":
-    fenetre = DisplayLoginPage()
-    fenetre.mainloop()
