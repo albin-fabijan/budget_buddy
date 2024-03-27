@@ -70,6 +70,8 @@ class SignUpController(Controller):
     def click_signup_button(self, event):
         message = self.verify_all()
         self.view.create_message_box(message[0], message[1])
+        if message[0] == "Succès":
+            self.parent.launch_page("login")
 
 
     def bind_view_buttons(self):
