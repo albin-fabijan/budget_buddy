@@ -29,6 +29,8 @@ class SignUpController(Controller):
         return True
 
     def verify_all(self):
+        first_name = self.view.first_name_entry.get()
+        last_name = self.view.last_name_entry.get()
         email = self.view.email_entry.get()
         password = self.view.password_entry.get()
         if not self.are_all_entries_filled():
@@ -54,7 +56,12 @@ class SignUpController(Controller):
                 "minimum 10 caractères."
             )
         else:
-            # CREER COMPTE PUIS...
+            self.model.create_user(
+                first_name,
+                last_name,
+                email,
+                self.model.hash_password(password)
+            )
             return (
                 "Succès",
                 "Votre compte a été crée, vous pouvez vous connecter."

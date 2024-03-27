@@ -55,4 +55,29 @@ class SignUpModel(Model):
         sha256.update(bytes_password)
         hashed_password = sha256.hexdigest()
         return hashed_password
+
+    def create_user(self, first_name, last_name, email, hashed_password):
+        connection = self.connect()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            f"INSERT INTO user ("
+            f"u_first_name, "
+            f"u_last_name, "
+            f"u_email, "
+            f"u_password_hash, "
+            f"u_balance"
+            f") "
+            f"VALUES ("
+            f"'{first_name}', "
+            f"'{last_name}', "
+            f"'{email}', "
+            f"'{hashed_password}', "
+            f"0"
+            f");"
+            )
+        connection.commit()
+
+        cursor.close()
+        connection.close()
         
