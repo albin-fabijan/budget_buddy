@@ -20,7 +20,6 @@ class SignUpView(tk.Frame):
         self.create_email()
         self.create_password()
         self.create_signupbutton()
-        self.on_signup()
 
     def place_frame(self):
         x = (self.width / 2) / self.parent.width
@@ -89,17 +88,5 @@ class SignUpView(tk.Frame):
             bg='white',
             width=10,
             height=2,
-            command=self.on_signup
         )
         signup_button.pack(side=tk.TOP, pady=40)
-
-    def on_signup(self):
-        first_name = self.first_name_entry.get()
-        last_name = self.last_name_entry.get()
-        email = self.email_entry.get()
-        password = self.password_entry.get()
-
-        print("Nom:", first_name)
-        print("Prénom:", last_name)
-        print("Email:", email)
-        print("Password:", password)

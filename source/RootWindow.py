@@ -1,7 +1,7 @@
 import tkinter as tk
 
 from .LoginController import LoginController
-from .SignUpView import SignUpView
+from .SignUpController import SignUpController
 
 class RootWindow(tk.Tk):
     def __init__(self):
@@ -14,7 +14,7 @@ class RootWindow(tk.Tk):
 
         self.pages = {
             "login": LoginController,
-            "signup": SignUpView
+            "signup": SignUpController
         }
 
         self.launch_page("login")
