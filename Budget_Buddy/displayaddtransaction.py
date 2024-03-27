@@ -67,10 +67,24 @@ class Displayaddtransaction(tk.Tk):
         amount = self.amount_entry.get()
         transaction_type = self.selected_option.get()
         description = self.description_entry.get("1.0", "end-1c")
+        if name == "" or amount == "" or description == "":
+            self.creat_errorpopup()
+            return
         print("Name:", name)
         print("Amount:", amount)
         print("Transaction type:", transaction_type)
         print("Description:", description)
+    
+    def creat_errorpopup(self):
+        error_popup = tk.Toplevel()
+        error_popup.title("Erreur")
+        error_popup.geometry("400x100")
+        error_popup.configure(bg='#FFFFFF')
+        error_label = tk.Label(error_popup, text="Veuillez remplir tous les champs", font=("Arial", 20), bg='#FFFFFF')
+        error_label.pack(side=tk.TOP, pady=10)
+        error_button = tk.Button(error_popup, text="OK", font=("Arial", 20), bg='white', width=10, height=2, command=error_popup.destroy)
+        error_button.pack(side=tk.TOP, pady=10)
+        error_popup.mainloop()
     
 
     
