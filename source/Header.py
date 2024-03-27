@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 class Header():
-    def run(self, window):
+    def run(self, window, first_name, last_name):
         window.header = tk.Frame(window, bg="#72D5FF")
         window.header.place(relx=0, rely=0, relwidth=1, relheight=0.1)
 
@@ -18,7 +18,7 @@ class Header():
         logo_label.place(relx=0.01, rely=0, relheight=1)
 
         name = tk.Label(window.header,
-            text="Nom Prenom",
+            text=str(first_name + " " + last_name),
             font=('Arial', 15),
             foreground="black",
             background= '#72D5FF'
