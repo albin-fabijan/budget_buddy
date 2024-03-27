@@ -33,8 +33,11 @@ class SignUpController(Controller):
         print(f"Tout rempli: {filled}")
 
         email = self.view.email_entry.get() 
-        valid = self.model.is_email_valid(email)
-        print(f"Email valide: {valid}")
+        print(f"Email valide: {self.model.is_email_valid(email)}")
+
+        password = self.view.password_entry.get()
+        print(f"MDP valide: {self.model.is_password_valid(password)}")
+
 
     def bind_view_buttons(self):
         signup_button = self.view.signup_button
