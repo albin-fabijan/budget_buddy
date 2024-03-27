@@ -2,13 +2,14 @@ from functools import partial
 
 from .Controller import Controller
 from .LoginView import LoginView
+from .LoginModel import LoginModel
 
 class LoginController(Controller):
     def __init__(self, parent):
         super().__init__(
             parent,
             LoginView(parent),
-            "OHGODNO",
+            LoginModel(),
         )
         self.view.main()
         self.bind_connection_button()
@@ -19,9 +20,11 @@ class LoginController(Controller):
     def get_password(self):
         return self.view.password_entry.get()
 
+    def get_users(self):
+        print(self.model.read_all_users())
+
     def click_connection_button(self, event):
-        self.get_email()
-        self.get_password()
+        self.get_users()
 
     def bind_connection_button(self):
         connection_button = self.view.connection_button
