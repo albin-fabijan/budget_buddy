@@ -7,7 +7,7 @@ import decimal
 
 class Overview():
     def __init__(self) :
-        self.transactions = [10.90, -40, 0, 280, -20, 50, -160]
+        self.transactions = [10.90, -40, -20, 280, 50, 0, -160]
 
     def run(self, window, first_name, last_name):
         header = Header()
@@ -64,8 +64,39 @@ class Overview():
         )
         account_amount.place(relx=0.97, rely=0.1, anchor='ne')
 
+        count_transactions = 0
+        i = 0
+
+        while count_transactions < 3 :
+            tr = self.transactions[-1-i]
+            date = 27-i
+            if (tr != 0) :
+                transaction_text = tk.Label(window.account_frame,
+                    text=str(date) + "/3   Nom de la transaction",
+                    bg="#FFFFFF",
+                    font=('Arial', 15),
+                )
+                transaction_text.place(relx=0.03, rely=0.35+(0.15*count_transactions))
+                decimal_tr = decimal.Decimal(tr)
+                rounded_tr = decimal_tr.quantize(decimal.Decimal('0.00'))
+                symbol = ""
+                if (tr < 0) :
+                    symbol = "-"
+                    rounded_tr *= -1
+                else :
+                    symbol = "+"
+                transaction_amount = tk.Label(window.account_frame,
+                    text=symbol + " " + str(rounded_tr) + "€",
+                    bg="#FFFFFF",
+                    font=('Arial', 15),
+                )
+                transaction_amount.place(relx=0.97, rely=0.35+(0.15*count_transactions), anchor='ne')
+                count_transactions += 1
+            i += 1
+            
+
     def plot_graph1(self, window):
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(13.15, 5.81))
 
         dates = ['21/3', '22/3', '23/3', '24/3', '25/3', '26/3', '27/3']
         counts = []
@@ -82,8 +113,6 @@ class Overview():
 
         ax.set_ylabel('en €')
         ax.set_title('Dépenses et Revenus')
-
-        
 
         canvas1 = FigureCanvasTkAgg(fig, master=window.graph_frame)
         canvas1.draw()
