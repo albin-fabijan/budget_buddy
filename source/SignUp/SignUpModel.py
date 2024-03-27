@@ -1,3 +1,4 @@
+import hashlib
 import re
 
 from ..Model import Model
@@ -47,3 +48,11 @@ class SignUpModel(Model):
             and has_special
             and is_required_length
         )
+
+    def hash_password(self, password):
+        bytes_password = password.encode()
+        sha256 = hashlib.sha256()
+        sha256.update(bytes_password)
+        hashed_password = sha256.hexdigest()
+        return hashed_password
+        
