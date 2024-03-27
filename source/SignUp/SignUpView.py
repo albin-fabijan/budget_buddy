@@ -10,7 +10,6 @@ class SignUpView(tk.Frame):
             width = self.width,
             height = self.height
         )
-        self.main()
 
     def main(self):
         self.place_frame()
@@ -19,7 +18,7 @@ class SignUpView(tk.Frame):
         self.creat_lastname()
         self.create_email()
         self.create_password()
-        self.create_signupbutton()
+        self.create_signup_button()
 
     def place_frame(self):
         x = (self.width / 2) / self.parent.width
@@ -70,7 +69,11 @@ class SignUpView(tk.Frame):
         self.email_entry.pack(side=tk.TOP, pady=5)
     
     def create_password(self):
-        self.password_entry = tk.Entry(self, font=("Arial", 26))
+        self.password_entry = tk.Entry(
+            self,
+            font=("Arial", 26),
+            show="*"
+        )
         additional_text = tk.Label(
             self,
             text="Mot de passe :",
@@ -80,8 +83,8 @@ class SignUpView(tk.Frame):
         additional_text.pack(side=tk.TOP, pady=10)
         self.password_entry.pack(side=tk.TOP, pady=5)
 
-    def create_signupbutton(self):
-        signup_button = tk.Button(
+    def create_signup_button(self):
+        self.signup_button = tk.Button(
             self,
             text="Inscription",
             font=("Arial", 26),
@@ -89,4 +92,4 @@ class SignUpView(tk.Frame):
             width=10,
             height=2,
         )
-        signup_button.pack(side=tk.TOP, pady=40)
+        self.signup_button.pack(side=tk.TOP, pady=40)
