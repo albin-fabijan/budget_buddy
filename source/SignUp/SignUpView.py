@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox
+
 
 class SignUpView(tk.Frame):
     def __init__(self, parent):
@@ -93,3 +95,6 @@ class SignUpView(tk.Frame):
             height=2,
         )
         self.signup_button.pack(side=tk.TOP, pady=40)
+
+    def create_message_box(self, title, description):
+        messagebox.showinfo(title, description)

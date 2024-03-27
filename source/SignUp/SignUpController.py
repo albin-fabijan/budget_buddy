@@ -28,15 +28,41 @@ class SignUpController(Controller):
                 return False
         return True
 
-    def click_signup_button(self, event):
-        filled = self.are_all_entries_filled()
-        print(f"Tout rempli: {filled}")
-
-        email = self.view.email_entry.get() 
-        print(f"Email valide: {self.model.is_email_valid(email)}")
-
+    def verify_all(self):
+        email = self.view.email_entry.get()
         password = self.view.password_entry.get()
-        print(f"MDP valide: {self.model.is_password_valid(password)}")
+        if not self.are_all_entries_filled():
+            return (
+                "Echec de création de compte",
+                "Veuillez remplir tout les champs."
+            )
+        elif not self.model.is_email_valid(email):
+            return (
+                "E-mail Invalide",
+                "L'e-mail doit inclure un '@', "
+                "et une extension de domaine.\n"
+                "N'utilisez que des lettres ASCII, des chiffres, "
+                "et ces caractères spéciaux ci-dessous:\n"
+                " - _ . "
+            )
+        elif not self.model.is_password_valid(password):
+            return (
+                "Mot de passe invalide",
+                "Le mot de passe doit inclure au moins "
+                "Une lettre majuscule, une lettre minuscule, "
+                "un chiffre, un caractère spécial et doit faire "
+                "minimum 10 caractères."
+            )
+        else:
+            # CREER COMPTE PUIS...
+            return (
+                "Succès",
+                "Votre compte a été crée, vous pouvez vous connecter."
+            )
+
+    def click_signup_button(self, event):
+        message = self.verify_all()
+        self.view.create_message_box(message[0], message[1])
 
 
     def bind_view_buttons(self):
