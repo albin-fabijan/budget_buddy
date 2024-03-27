@@ -1,6 +1,7 @@
+from functools import partial
 import tkinter as tk
 
-class DisplayLoginPage(tk.Frame):
+class LoginView(tk.Frame):
     def __init__(self, parent):
         self.parent = parent
         self.width = 700
@@ -17,7 +18,7 @@ class DisplayLoginPage(tk.Frame):
         self.create_titletext()
         self.create_email()
         self.create_password()
-        self.create_connexionbutton()
+        self.create_connectionbutton()
         self.create_clickabletext()
 
     def place_frame(self):
@@ -61,23 +62,16 @@ class DisplayLoginPage(tk.Frame):
         additional_text.pack(side=tk.TOP, pady=40)
         self.password_entry.pack(side=tk.TOP, pady=10)
 
-    def create_connexionbutton(self):
-        self.connexion_button = tk.Button(
+    def create_connectionbutton(self):
+        self.connection_button = tk.Button(
             self,
-            text="Connexion",
+            text="connection",
             font=("Arial", 32),
             bg= "#FFFFFF",
             width=10,
             height=2,
-            command=self.on_connection
         )
-        self.connexion_button.pack(side=tk.TOP, pady=40)
-
-    def on_connection(self):
-        email = self.email_entry.get()
-        password = self.password_entry.get()
-        print("Email:", email)
-        print("Password:", password)
+        self.connection_button.pack(side=tk.TOP, pady=40)
 
     def create_clickabletext(self):
         clickable_text = tk.Label(
@@ -87,4 +81,3 @@ class DisplayLoginPage(tk.Frame):
             bg='#72D5FF'
         )
         clickable_text.pack(side=tk.TOP, pady=20)
-        #clickable_text.bind("<Button-1>", self.open_registration_page)

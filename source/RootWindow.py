@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from .DisplayLoginPage import DisplayLoginPage
+from .LoginController import LoginController
 
 class RootWindow(tk.Tk):
     def __init__(self):
@@ -11,6 +11,6 @@ class RootWindow(tk.Tk):
         self.resizable(False, False)
         self.title("Root")
 
-        self.login_page = DisplayLoginPage(self)
+        self.login_page = LoginController(self)
 
         self.mainloop()
