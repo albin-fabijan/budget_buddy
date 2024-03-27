@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 
 class Header():
-    def run(self, window, first_name, last_name):
+    def run(self, window, first_name, last_name, on_add_clicked, on_account_clicked, on_search_clicked):
         window.header = tk.Frame(window, bg="#72D5FF")
         window.header.place(relx=0, rely=0, relwidth=1, relheight=0.1)
 
@@ -36,28 +36,34 @@ class Header():
         logout_button.place(relx=0.995, rely=0.5, anchor='e')
 
         button1 = tk.Button(window,
-            text="1",
+            text="Ajouter une transaction",
             background="#40AFFF",
             foreground="black",
             activebackground="#005897",
-            borderwidth=0
+            borderwidth=0,
+            font=('Arial', 12),
+            command=on_add_clicked
         )
         button1.place(relx=0, rely=0.1, relwidth=0.33333, relheight=0.06)
 
         button2 = tk.Button(window,
-            text="2",
+            text="Comptes",
             background="#007DB2",
             foreground="black",
             activebackground="#005897",
-            borderwidth=0
+            borderwidth=0,
+            font=('Arial', 12),
+            command=on_account_clicked
         )
         button2.place(relx=0.33333, rely=0.1, relwidth=0.33333, relheight=0.06)
 
         button3 = tk.Button(window,
-            text="3",
+            text="Recherche filtrée",
             background="#40AFFF",
             foreground="black",
             activebackground="#005897",
-            borderwidth=0
+            borderwidth=0,
+            font=('Arial', 12),
+            command=on_search_clicked
         )
         button3.place(relx=0.66666, rely=0.1, relwidth=0.33333, relheight=0.06)
