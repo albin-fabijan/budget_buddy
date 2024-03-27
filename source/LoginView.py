@@ -73,10 +73,10 @@ class LoginView(tk.Frame):
         self.connection_button.pack(side=tk.TOP, pady=40)
 
     def create_clickabletext(self):
-        clickable_text = tk.Label(
+        self.clickable_text = tk.Label(
             self,
             text="Pas encore de compte ? Inscrivez-vous",
             font=("Arial", 26),
             bg='#72D5FF'
         )
-        clickable_text.pack(side=tk.TOP, pady=20)
+        self.clickable_text.pack(side=tk.TOP, pady=20)

@@ -1,5 +1,3 @@
-from functools import partial
-
 from .Controller import Controller
 from .LoginView import LoginView
 from .LoginModel import LoginModel
@@ -12,7 +10,7 @@ class LoginController(Controller):
             LoginModel(),
         )
         self.view.main()
-        self.bind_connection_button()
+        self.bind_view()
 
     def get_email(self):
         return self.view.email_entry.get()
@@ -26,6 +24,12 @@ class LoginController(Controller):
     def click_connection_button(self, event):
         self.get_users()
 
-    def bind_connection_button(self):
+    def click_sign_up_button(self, event):
+        self.parent.launch_page("signup")
+
+    def bind_view(self):
         connection_button = self.view.connection_button
-        connection_button.bind("<Button-1>", self.click_connection_button)
+        connection_button.bind("<ButtonRelease-1>", self.click_connection_button)
+        
+        clickable_text = self.view.clickable_text
+        clickable_text.bind("<ButtonRelease-1>", self.click_sign_up_button)

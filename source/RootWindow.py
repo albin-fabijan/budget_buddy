@@ -1,6 +1,7 @@
 import tkinter as tk
 
 from .LoginController import LoginController
+from .SignUpView import SignUpView
 
 class RootWindow(tk.Tk):
     def __init__(self):
@@ -11,6 +12,16 @@ class RootWindow(tk.Tk):
         self.resizable(False, False)
         self.title("Root")
 
-        self.login_page = LoginController(self)
+        self.pages = {
+            "login": LoginController,
+            "signup": SignUpView
+        }
+
+        self.launch_page("login")
 
         self.mainloop()
+
+    def launch_page(self, page_name):
+        for child in self.winfo_children():
+            child.destroy()
+        self.current_page = self.pages[page_name](self)
