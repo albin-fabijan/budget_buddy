@@ -1,4 +1,4 @@
-from .Controller import Controller
+from ..Controller import Controller
 from .SignUpView import SignUpView
 from .SignUpModel import SignUpModel
 

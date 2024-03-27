@@ -1,7 +1,7 @@
 import tkinter as tk
 
-from .LoginController import LoginController
-from .SignUpController import SignUpController
+from .Login.LoginController import LoginController
+from .SignUp.SignUpController import SignUpController
 
 class RootWindow(tk.Tk):
     def __init__(self):

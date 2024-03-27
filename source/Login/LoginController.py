@@ -1,4 +1,4 @@
-from .Controller import Controller
+from ..Controller import Controller
 from .LoginView import LoginView
 from .LoginModel import LoginModel
 
