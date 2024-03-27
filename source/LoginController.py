@@ -14,16 +14,15 @@ class LoginController(Controller):
         self.bind_connection_button()
 
     def get_email(self):
-        print(self.view.email_entry.get())
+        return self.view.email_entry.get()
 
     def get_password(self):
-        print(self.view.password_entry.get())
+        return self.view.password_entry.get()
 
     def click_connection_button(self, event):
-        print("hello!")
+        self.get_email()
+        self.get_password()
 
     def bind_connection_button(self):
         connection_button = self.view.connection_button
-        print(connection_button.bind())
         connection_button.bind("<Button-1>", self.click_connection_button)
-        print(connection_button.bind())

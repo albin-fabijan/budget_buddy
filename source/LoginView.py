@@ -11,7 +11,6 @@ class LoginView(tk.Frame):
             width=self.width,
             height=self.height,
         )
-        self.main()
 
     def main(self):
         self.place_frame()
