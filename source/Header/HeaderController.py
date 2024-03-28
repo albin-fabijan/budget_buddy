@@ -21,6 +21,9 @@ class HeaderController(Controller):
             text=f"{first_name} {last_name}"
         )
 
+    def click_placeholder(self, event):
+        print(event)
+
     def click_logout_button(self, event):
         self.parent.launch_page("login")
 
@@ -28,4 +31,18 @@ class HeaderController(Controller):
         self.view.logout_button.bind(
             "<ButtonRelease-1>",
             self.click_logout_button
+        )
+
+        self.view.button1.bind(
+            "<ButtonRelease-1>",
+            self.click_placeholder
+        )
+        self.view.button2.bind(
+            "<ButtonRelease-1>",
+            self.click_placeholder
+        )
+
+        self.view.button3.bind(
+            "<ButtonRelease-1>",
+            self.click_placeholder
         )
