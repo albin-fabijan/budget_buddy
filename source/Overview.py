@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from source.Header import Header
 from source.Transaction import Transaction
 from source.NotificationPage import NotificationPage
+from source.displayaddtransaction import displayaddtransaction
 import decimal
 
 class Overview():
@@ -20,10 +21,12 @@ class Overview():
         self.notifications = []
         self.notifications_clicked = False
         self.header = Header()
+        self.add_transaction = None
         self.init_notif()
 
-    def example_add(self) :
-        print("ajouter une transaction")
+    def example_add(self, window) :
+        fenetre = displayaddtransaction(window, self)
+        fenetre.mainloop()
 
     def example_account(self) :
         print("aller vers les comptes")
@@ -42,7 +45,10 @@ class Overview():
 
     def run(self, window, first_name, last_name):
         header = Header()
-        header.run(window, first_name, last_name, self.example_add, self.example_account, self.example_search)
+        header.run(window, first_name, last_name, lambda : self.example_add(window), self.example_account, self.example_search)
+
+        if (self.add_transaction != None) :
+            self.transactions.append(self.add_transaction)
 
         window.account = tk.Frame(window.content, bg="#007DB2")
         window.account.place(relx=0.05, rely=0.1, relwidth=0.65, relheight=0.35)
@@ -119,7 +125,7 @@ class Overview():
                     bg="#FFFFFF",
                     font=('Arial', 15),
                 )
-                transaction_text.place(relx=0.12, rely=0.35+(0.15*count_transactions))
+                transaction_text.place(relx=0.2, rely=0.35+(0.15*count_transactions))
                 decimal_tr = decimal.Decimal(tr)
                 rounded_tr = decimal_tr.quantize(decimal.Decimal('0.00'))
                 symbol = ""

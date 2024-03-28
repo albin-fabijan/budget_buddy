@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from source.Overview import Overview
 from source.NotificationPage import NotificationPage
+from source.displayaddtransaction import displayaddtransaction
 
 class Window :
     def create_window(self) :
