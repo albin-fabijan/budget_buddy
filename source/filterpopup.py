@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class filterpopup(tk.Tk):
+class FilterPopup(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Filtre")
@@ -19,16 +19,15 @@ class filterpopup(tk.Tk):
         self.create_date()
         self.create_eraisedbutton()
         self.create_applybutton()
-        self.create_date()
 
     def create_ordre(self):
         ordre_label = tk.Label(self, text="Ordre", font=("Arial", 16), bg='#FFFFFF')
         ordre_label.place(x=30, y=50)
 
         ordre_options = ["montant croissant", "montant décroissant", "date croissante", "date décroissante"]
-        ordre_select = tk.OptionMenu(self, tk.StringVar(), *ordre_options)
-        ordre_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
-        ordre_select.place(x=150, y=50)
+        self.ordre_select = tk.OptionMenu(self, tk.StringVar(), *ordre_options)
+        self.ordre_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
+        self.ordre_select.place(x=150, y=50)
 
         check_button = tk.Checkbutton(self, variable=self.ordre_var, bg='#FFFFFF')
         check_button.place(x=375, y=55)
@@ -38,9 +37,9 @@ class filterpopup(tk.Tk):
         type_label.place(x=30, y=150)
 
         type_options = ["ressource", "dépense"]
-        type_select = tk.OptionMenu(self, tk.StringVar(), *type_options)
-        type_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
-        type_select.place(x=150, y=150)
+        self.type_select = tk.OptionMenu(self, tk.StringVar(), *type_options)
+        self.type_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
+        self.type_select.place(x=150, y=150)
 
         check_button = tk.Checkbutton(self, variable=self.type_var, bg='#FFFFFF')
         check_button.place(x=375, y=155)
@@ -52,14 +51,14 @@ class filterpopup(tk.Tk):
         de_label = tk.Label(self, text="De", font=("Arial", 14), bg='#FFFFFF')
         de_label.place(x=120, y=250)
 
-        date_minentry = tk.Entry(self, font=("Arial", 16), width=7)
-        date_minentry.place(x=150, y=250)
+        self.date_minentry = tk.Entry(self, font=("Arial", 16), width=7)
+        self.date_minentry.place(x=150, y=250)
 
         a_label = tk.Label(self, text="à", font=("Arial", 14), bg='#FFFFFF')
         a_label.place(x=230, y=250)
 
-        date_maxentry = tk.Entry(self, font=("Arial", 16), width=7)
-        date_maxentry.place(x=250, y=250)
+        self.date_maxentry = tk.Entry(self, font=("Arial", 16), width=7)
+        self.date_maxentry.place(x=250, y=250)
 
         check_button = tk.Checkbutton(self, variable=self.date_var, bg='#FFFFFF')
         check_button.place(x=375, y=255)
@@ -75,9 +74,9 @@ class filterpopup(tk.Tk):
     def apply_filter(self):
         print("Filtre appliqué")
         if self.ordre_var.get() == 1:
-            print("Ordre sélectionné :", self.ordre_select.get())
+            print("Ordre sélectionné :", self.ordre_select.cget("text"))
         if self.type_var.get() == 1:
-            print("Type sélectionné :", self.type_select.get())
+            print("Type sélectionné :", self.type_select.cget("text"))
         if self.date_var.get() == 1:
             print("Date sélectionnée :", self.date_minentry.get(), "à", self.date_maxentry.get())
 
@@ -85,6 +84,3 @@ class filterpopup(tk.Tk):
         # Cette méthode sera appelée lorsque le bouton "Effacer" est cliqué
         # Ajoutez ici le code pour effacer le filtre
         print("Filtre effacé")
-
-x = filterpopup()
-x.mainloop()
