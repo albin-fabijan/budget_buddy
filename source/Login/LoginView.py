@@ -1,5 +1,6 @@
 from functools import partial
 import tkinter as tk
+from tkinter import messagebox
 
 class LoginView(tk.Frame):
     def __init__(self, parent):
@@ -51,7 +52,11 @@ class LoginView(tk.Frame):
         self.email_entry.pack(side=tk.TOP, pady=10)
 
     def create_password(self):
-        self.password_entry = tk.Entry(self, font=("Arial", 32))
+        self.password_entry = tk.Entry(
+            self,
+            font=("Arial", 32),
+            show="*"
+        )
         additional_text = tk.Label(
             self,
             text="Mot de passe :",
@@ -80,3 +85,6 @@ class LoginView(tk.Frame):
             bg='#72D5FF'
         )
         self.clickable_text.pack(side=tk.TOP, pady=20)
+
+    def create_message_box(self, title, description):
+        messagebox.showinfo(title, description)

@@ -12,6 +12,8 @@ class RootWindow(tk.Tk):
         self.resizable(False, False)
         self.title("Root")
 
+        self.user_id = None
+
         self.pages = {
             "login": LoginController,
             "signup": SignUpController
