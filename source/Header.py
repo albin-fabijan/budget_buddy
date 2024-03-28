@@ -34,7 +34,8 @@ class Header():
             background="#007DB2",
             foreground="black",
             image=window.switch,
-            borderwidth=0
+            borderwidth=0,
+            cursor="hand2",
         )
         logout_button.place(relx=0.995, rely=0.5, anchor='e')
 
@@ -45,6 +46,7 @@ class Header():
             activebackground="#005897",
             borderwidth=0,
             font=('Arial', 12),
+            cursor="hand2",
             command=on_add_clicked
         )
         button1.place(relx=0, rely=0.1, relwidth=0.33333, relheight=0.06)
@@ -56,6 +58,7 @@ class Header():
             activebackground="#005897",
             borderwidth=0,
             font=('Arial', 12),
+            cursor="hand2",
             command=on_account_clicked
         )
         button2.place(relx=0.33333, rely=0.1, relwidth=0.33333, relheight=0.06)
@@ -67,6 +70,7 @@ class Header():
             activebackground="#005897",
             borderwidth=0,
             font=('Arial', 12),
+            cursor="hand2",
             command=on_search_clicked
         )
         button3.place(relx=0.66666, rely=0.1, relwidth=0.33333, relheight=0.06)
