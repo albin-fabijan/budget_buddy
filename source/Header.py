@@ -6,6 +6,9 @@ class Header():
         window.header = tk.Frame(window, bg="#72D5FF")
         window.header.place(relx=0, rely=0, relwidth=1, relheight=0.1)
 
+        window.content = tk.Frame(window, bg="#FFFFFF")
+        window.content.place(relx=0, rely=0.16, relwidth=1, relheight=0.9)
+
         icon = tk.PhotoImage(file='budget_buddy/images/acajou_accounts.png')
         switch = tk.PhotoImage(file='budget_buddy/images/switch_off.png')
         window.logo = icon.subsample(9)
@@ -67,3 +70,9 @@ class Header():
             command=on_search_clicked
         )
         button3.place(relx=0.66666, rely=0.1, relwidth=0.33333, relheight=0.06)
+
+    def clear_page(self, window) :
+        window.content.destroy()
+
+        window.content = tk.Frame(window, bg="#FFFFFF")
+        window.content.place(relx=0, rely=0.16, relwidth=1, relheight=0.9)
