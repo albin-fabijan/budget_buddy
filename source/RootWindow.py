@@ -10,7 +10,7 @@ class RootWindow(tk.Tk):
         self.height = 1024
         self.geometry(f"{self.width}x{self.height}")
         self.resizable(False, False)
-        self.title("Root")
+        self.title("Akajou Accounts")
 
         self.user_id = None
 
