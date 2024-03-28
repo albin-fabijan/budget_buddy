@@ -33,6 +33,7 @@ class SignUpController(Controller):
         last_name = self.view.last_name_entry.get()
         email = self.view.email_entry.get()
         password = self.view.password_entry.get()
+        self.model.is_email_in_database(email)
         if not self.are_all_entries_filled():
             return (
                 "Echec de création de compte",
@@ -46,6 +47,12 @@ class SignUpController(Controller):
                 "N'utilisez que des lettres ASCII, des chiffres, "
                 "et ces caractères spéciaux ci-dessous:\n"
                 " - _ . "
+            )
+        elif self.model.is_email_in_database(email):
+            return (
+                "E-mail existant",
+                "Il y a déjà un compte qui utilise cet e-mail, "
+                "veuillez utiliser une autre adresse mail."
             )
         elif not self.model.is_password_valid(password):
             return (

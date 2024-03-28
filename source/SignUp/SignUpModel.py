@@ -22,6 +22,21 @@ class SignUpModel(Model):
 
         return result.group() == email
 
+    def is_email_in_database(self, email):
+        connection = self.connect()
+        cursor = connection.cursor()
+
+        cursor.execute(f"SELECT u_id FROM user WHERE u_email = '{email}'")
+        result = cursor.fetchall()
+
+        cursor.close()
+        connection.close()
+
+        if len(result) != 0:
+            return True
+        else:
+            return False
+
     def is_password_valid(self, password):
         has_uppercase = any(
             char.isupper()
