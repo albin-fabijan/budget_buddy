@@ -10,13 +10,13 @@ import decimal
 
 class Overview():
     def __init__(self) :
-        t1 = Transaction("Carte à gratter", "21/3", 10000)
-        t2 = Transaction("Las Vegas", "22/3", -9000)
-        t3 = Transaction("Franprix", "23/3", -10.90)
-        t4 = Transaction("Babysitting", "24/3", 280)
-        t5 = Transaction("Burger King", "25/7", -15)
-        t6 = Transaction("Rien", "26/3", 0)
-        t7 = Transaction("Loyer", "27/3", -160)
+        t1 = Transaction("Carte à gratter", "2024-03-21", 10000)
+        t2 = Transaction("Las Vegas", "2024-03-22", -9000)
+        t3 = Transaction("Franprix", "2024-03-23", -10.90)
+        t4 = Transaction("Babysitting", "2024-03-24", 280)
+        t5 = Transaction("Burger King", "2024-03-25", -15)
+        t6 = Transaction("Rien", "2024-03-26", 0)
+        t7 = Transaction("Loyer", "2024-03-27", -160)
         self.transactions = [t1, t2, t3, t4, t5, t6, t7]
         self.notifications = []
         self.notifications_clicked = False
@@ -29,7 +29,7 @@ class Overview():
         fenetre.mainloop()
 
     def example_account(self) :
-        print("aller vers les comptes")
+        print("déjà dans les comptes")
 
     def example_search(self) :
         print("aller vers la recherche")
@@ -49,6 +49,9 @@ class Overview():
 
         if (self.add_transaction != None) :
             self.transactions.append(self.add_transaction)
+            self.notifications.clear()
+            self.init_notif()
+            self.add_transaction = None
 
         window.account = tk.Frame(window.content, bg="#007DB2")
         window.account.place(relx=0.05, rely=0.1, relwidth=0.65, relheight=0.35)
@@ -167,6 +170,8 @@ class Overview():
                         text=self.notifications[-1-i],
                         bg="#FFFFFF",
                         font=('Arial', 15),
+                        anchor='w',
+                        width=15
                     )
                     transaction_text.place(relx=0.1, rely=0.15+(0.15*i))
         else :

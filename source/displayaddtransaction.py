@@ -8,7 +8,6 @@ class displayaddtransaction(tk.Tk):
         self.title("Add transaction")
         self.geometry("428x926")
         self.configure(bg='#72D5FF')
-        self.quit_bool = False
         self.parent_window = window
         self.overview = overview
         self.main()
@@ -75,7 +74,7 @@ class displayaddtransaction(tk.Tk):
         if name == "" or amount == "" or description == "":
             self.creat_errorpopup()
             return
-        real_amount = amount
+        real_amount = int(amount)
         if (transaction_type == "Dépenses"):
             real_amount *= -1
         today = date.today()

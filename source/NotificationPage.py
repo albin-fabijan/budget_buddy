@@ -12,7 +12,15 @@ class NotificationPage():
         self.header = Header()
 
     def example_add(self) :
-        print("ajouter une transaction")
+        error_popup = tk.Toplevel()
+        error_popup.title("Erreur")
+        error_popup.geometry("400x100")
+        error_popup.configure(bg='#FFFFFF')
+        error_label = tk.Label(error_popup, text="Impossible de créer une transaction depuis les notifications", font=("Arial", 10), bg='#FFFFFF')
+        error_label.pack(side=tk.TOP, pady=10)
+        error_button = tk.Button(error_popup, text="OK", font=("Arial", 20), bg='white', width=10, height=2, command=error_popup.destroy)
+        error_button.pack(side=tk.TOP, pady=10)
+        error_popup.mainloop()
 
     def example_account(self, window) :
         self.clear(window)
