@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
-from source.Overview import Overview
 from source.filteredsearchview import filteredsearchview
+from source.filterpopup import filterpopup
 
 WINDOW_WIDTH = 1440
 WINDOW_HEIGHT = 1024

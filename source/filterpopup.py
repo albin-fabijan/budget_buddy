@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class FilterPopup(tk.Tk):
+class filterpopup(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Filtre")

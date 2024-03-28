@@ -1,6 +1,7 @@
 import tkinter as tk
 from source.Header  import Header
 from tkinter import ttk
+from source.filterpopup import filterpopup
 
 class filteredsearchview(tk.Frame):
     def __init__(self):
@@ -49,7 +50,8 @@ class filteredsearchview(tk.Frame):
         filter_button.place(x=260, y=120)
     
     def on_filter(self):
-        pass
+        popup = filterpopup()
+        popup.mainloop()
 
     def creat_addbutton(self, window):
         add_button = tk.Button(window, text="+", font=("Arial", 16,), width=2, height=1 , command=self.on_addbutton)
