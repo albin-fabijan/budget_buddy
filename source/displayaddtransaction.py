@@ -1,6 +1,6 @@
 import tkinter as tk
 
-class Displayaddtransaction(tk.Tk):
+class displayaddtransaction(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("Add transaction")
@@ -94,5 +94,5 @@ class Displayaddtransaction(tk.Tk):
 
     
 if __name__ == "__main__":
-    fenetre = Displayaddtransaction()
+    fenetre = displayaddtransaction()
     fenetre.mainloop()
