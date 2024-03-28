@@ -46,7 +46,7 @@ class HeaderView(tk.Frame):
         self.switch = tk.PhotoImage(file=p().select_image_file("switch_off.png"))
         self.switch = self.switch.subsample(40)
 
-        logout_button = tk.Button(
+        self.logout_button = tk.Button(
             self,
             width=50,
             height=50,
@@ -56,7 +56,7 @@ class HeaderView(tk.Frame):
             borderwidth=0,
             cursor="hand2",
         )
-        logout_button.place(relx=0.995, rely=0.5, anchor='e')
+        self.logout_button.place(relx=0.995, rely=0.5, anchor='e')
 
     def create_button_1(self):
         self.button1 = tk.Button(

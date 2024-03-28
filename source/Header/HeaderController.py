@@ -12,10 +12,20 @@ class HeaderController(Controller):
         )
         self.view.main()
         self.set_user_name()
+        self.bind_view()
 
     def set_user_name(self):
         first_name = self.model.get_user_first_name(self.parent.user_id)
         last_name = self.model.get_user_last_name(self.parent.user_id)
         self.view.name.config(
             text=f"{first_name} {last_name}"
+        )
+
+    def click_logout_button(self, event):
+        self.parent.launch_page("login")
+
+    def bind_view(self):
+        self.view.logout_button.bind(
+            "<ButtonRelease-1>",
+            self.click_logout_button
         )
