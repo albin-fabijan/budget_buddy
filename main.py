@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from source.Overview import Overview
+from source.filteredsearchview import filteredsearchview
 
 WINDOW_WIDTH = 1440
 WINDOW_HEIGHT = 1024
@@ -15,8 +16,9 @@ def create_window() :
     icon = tk.PhotoImage(file='budget_buddy/images/acajou_accounts.png')
     main_window.iconphoto(True, icon)
 
-    menu = Overview()
-    menu.run(main_window, "Djibril", "Mimouni")
+    menu = filteredsearchview()
+    menu.main(main_window, "Djibril", "Mimouni")
+    
 
     main_window.mainloop()
 
