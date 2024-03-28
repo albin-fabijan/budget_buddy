@@ -19,7 +19,7 @@ class HeaderView(tk.Frame):
         self.create_button_3()
 
     def place_frame(self):
-        self.place(relx=0, rely=0, relwidth=1, relheight=0.18)
+        self.place(relx=0, rely=0, relwidth=1, relheight=0.16)
 
     def create_logo(self):
         self.logo = tk.PhotoImage(file=p().select_image_file("acajou_accounts.png"))
@@ -35,7 +35,6 @@ class HeaderView(tk.Frame):
     def create_name(self):
         self.name = tk.Label(
             self,
-            text=f"FirstName LastName",
             font=('Arial', 15),
             foreground="black",
             background= '#72D5FF'
@@ -69,7 +68,7 @@ class HeaderView(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        self.button1.place(relx=0, rely=0.5, relwidth=0.33333, relheight=0.5)
+        self.button1.place(relx=0, rely=0.63, relwidth=0.33333, relheight=0.375)
 
     def create_button_2(self):
         self.button2 = tk.Button(
@@ -82,7 +81,7 @@ class HeaderView(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        self.button2.place(relx=0.33333, rely=0.5, relwidth=0.33333, relheight=0.5)
+        self.button2.place(relx=0.33333, rely=0.63, relwidth=0.33333, relheight=0.375)
 
     def create_button_3(self):
         self.button3 = tk.Button(
@@ -95,4 +94,4 @@ class HeaderView(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        self.button3.place(relx=0.66666, rely=0.5, relwidth=0.33333, relheight=0.5)
+        self.button3.place(relx=0.66666, rely=0.63, relwidth=0.33333, relheight=0.375)

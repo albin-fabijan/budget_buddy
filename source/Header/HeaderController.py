@@ -1,5 +1,6 @@
 from ..Controller import Controller
 from .HeaderView import HeaderView
+from .HeaderModel import HeaderModel
 
 
 class HeaderController(Controller):
@@ -7,6 +8,14 @@ class HeaderController(Controller):
         super().__init__(
             parent,
             HeaderView(parent),
-            "PLACEHOLDER !!!"
+            HeaderModel()
         )
         self.view.main()
+        self.set_user_name()
+
+    def set_user_name(self):
+        first_name = self.model.get_user_first_name(self.parent.user_id)
+        last_name = self.model.get_user_last_name(self.parent.user_id)
+        self.view.name.config(
+            text=f"{first_name} {last_name}"
+        )

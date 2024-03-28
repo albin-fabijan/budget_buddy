@@ -57,7 +57,10 @@ class LoginController(Controller):
         if message:
             self.view.create_message_box(message[0], message[1])
             return
-
+        self.parent.user_id = self.model.get_user_id(
+            self.view.email_entry.get(),
+            self.view.password_entry.get()
+        )
         self.parent.launch_page("header")
 
     def click_sign_up_button(self, event):
