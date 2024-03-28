@@ -11,7 +11,7 @@ class Header(tk.Frame):
         self.run()
 
     def run(self):
-        self.place(relx=0, rely=0, relwidth=1, relheight=0.1)
+        self.place(relx=0, rely=0, relwidth=1, relheight=0.18)
 
         self.icon = tk.PhotoImage(file=p().select_image_file("acajou_accounts.png"))
         self.switch = tk.PhotoImage(file=p().select_image_file("switch_off.png"))
@@ -23,7 +23,7 @@ class Header(tk.Frame):
             image=self.logo,
             background="#72D5FF"
         )
-        logo_label.place(relx=0.01, rely=0, relheight=1)
+        logo_label.place(relx=0.01, rely=0, relheight=0.5)
 
         name = tk.Label(
             self,
@@ -32,7 +32,7 @@ class Header(tk.Frame):
             foreground="black",
             background= '#72D5FF'
         )
-        name.place(relx=0.33333, rely=0, relwidth=0.33333, relheight=1)
+        name.place(relx=0.33333, rely=0, relwidth=0.33333, relheight=0.5)
 
         logout_button = tk.Button(
             self,
@@ -44,7 +44,7 @@ class Header(tk.Frame):
             borderwidth=0,
             cursor="hand2",
         )
-        logout_button.place(relx=0.995, rely=0.5, anchor='e')
+        logout_button.place(relx=0.995, rely=0.25, anchor='e')
 
         button1 = tk.Button(
             self,
@@ -56,7 +56,7 @@ class Header(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        button1.place(relx=0, rely=0.1, relwidth=0.33333, relheight=0.06)
+        button1.place(relx=0, rely=0.5, relwidth=0.33333, relheight=0.5)
 
         button2 = tk.Button(
             self,
@@ -68,7 +68,7 @@ class Header(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        button2.place(relx=0.33333, rely=0.1, relwidth=0.33333, relheight=0.06)
+        button2.place(relx=0.33333, rely=0.5, relwidth=0.33333, relheight=0.5)
 
         button3 = tk.Button(
             self,
@@ -80,4 +80,4 @@ class Header(tk.Frame):
             font=('Arial', 12),
             cursor="hand2",
         )
-        button3.place(relx=0.66666, rely=0.1, relwidth=0.33333, relheight=0.06)
+        button3.place(relx=0.66666, rely=0.5, relwidth=0.33333, relheight=0.5)
