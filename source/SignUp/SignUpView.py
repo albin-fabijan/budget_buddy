@@ -17,7 +17,7 @@ class SignUpView(tk.Frame):
         self.place_frame()
         self.create_titletext()
         self.create_firstname()
-        self.creat_lastname()
+        self.create_lastname()
         self.create_email()
         self.create_password()
         self.create_signup_button()
@@ -48,7 +48,7 @@ class SignUpView(tk.Frame):
         additional_text.pack(side=tk.TOP, pady=10)
         self.first_name_entry.pack(side=tk.TOP, pady=5)
 
-    def creat_lastname(self):
+    def create_lastname(self):
         self.last_name_entry = tk.Entry(self, font=("Arial", 26))
         additional_text = tk.Label(
             self,
