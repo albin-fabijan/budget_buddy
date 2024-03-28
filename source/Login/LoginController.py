@@ -51,18 +51,14 @@ class LoginController(Controller):
                 "Mot de passe incorrect",
                 "Le mot de passe que vous avez mis n'est pas correct."
             )
-        else:
-            self.set_user_id()
-            return (
-                "Connexion réussite",
-                "Ce message n'existera pas, on ira direct dans l'overview\n"
-                f"{self.parent.user_id}"
-            )
 
     def click_connection_button(self, event):
         message = self.verify_all()
         if message:
             self.view.create_message_box(message[0], message[1])
+            return
+
+        self.parent.launch_page("header")
 
     def click_sign_up_button(self, event):
         self.parent.launch_page("signup")
