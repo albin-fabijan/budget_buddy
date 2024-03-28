@@ -17,6 +17,7 @@ class HeaderView(tk.Frame):
         self.create_button_1()
         self.create_button_2()
         self.create_button_3()
+        self.create_content_frame()
 
     def place_frame(self):
         self.place(relx=0, rely=0, relwidth=1, relheight=0.1)
@@ -95,3 +96,10 @@ class HeaderView(tk.Frame):
             cursor="hand2",
         )
         self.button3.place(relx=0.66666, rely=0.1, relwidth=0.33333, relheight=0.06)
+
+    def create_content_frame(self):
+        self.content_frame = tk.Frame(
+            self.parent,
+            background="#FFFFFF"
+        )
+        self.content_frame.place(relx=0, rely=0.16, relwidth=1, relheight=0.9)
