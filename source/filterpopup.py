@@ -10,8 +10,8 @@ class filterpopup(tk.Tk):
         self.main()
 
     def main(self):
-        self.ordre_var = tk.IntVar(value=0)
-        self.type_var = tk.IntVar(value=0)
+        self.ordre_var = tk.StringVar(value="montant croissant")
+        self.type_var = tk.StringVar(value="ressource")
         self.date_var = tk.IntVar(value=0)
 
         self.create_ordre()
@@ -20,12 +20,13 @@ class filterpopup(tk.Tk):
         self.create_eraisedbutton()
         self.create_applybutton()
 
+
     def create_ordre(self):
         ordre_label = tk.Label(self, text="Ordre", font=("Arial", 16), bg='#FFFFFF')
         ordre_label.place(x=30, y=50)
 
         ordre_options = ["montant croissant", "montant décroissant", "date croissante", "date décroissante"]
-        self.ordre_select = tk.OptionMenu(self, tk.StringVar(), *ordre_options)
+        self.ordre_select = tk.OptionMenu(self, self.ordre_var, *ordre_options)
         self.ordre_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
         self.ordre_select.place(x=150, y=50)
 
@@ -37,7 +38,7 @@ class filterpopup(tk.Tk):
         type_label.place(x=30, y=150)
 
         type_options = ["ressource", "dépense"]
-        self.type_select = tk.OptionMenu(self, tk.StringVar(), *type_options)
+        self.type_select = tk.OptionMenu(self, self.type_var, *type_options)
         self.type_select.config(font=("Arial", 16), bg='#FFFFFF', width=15)
         self.type_select.place(x=150, y=150)
 
@@ -73,10 +74,8 @@ class filterpopup(tk.Tk):
 
     def apply_filter(self):
         print("Filtre appliqué")
-        if self.ordre_var.get() == 1:
-            print("Ordre sélectionné :", self.ordre_select.cget("text"))
-        if self.type_var.get() == 1:
-            print("Type sélectionné :", self.type_select.cget("text"))
+        print("Ordre sélectionné :", self.ordre_var.get())
+        print("Type sélectionné :", self.type_var.get())
         if self.date_var.get() == 1:
             print("Date sélectionnée :", self.date_minentry.get(), "à", self.date_maxentry.get())
 
