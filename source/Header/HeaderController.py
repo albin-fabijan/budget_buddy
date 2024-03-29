@@ -2,6 +2,7 @@ from ..Controller import Controller
 from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
 from ..Dashboard.DashboardController import DashboardController
+from ..NotificationPage import NotificationPage
 
 
 class HeaderController(Controller):
@@ -37,11 +38,16 @@ class HeaderController(Controller):
             child.destroy()
         self.current_page(
             self.view.content_frame,
+            self,
             self.parent.user_id
         )
 
     def click_button_two(self, event):
         self.current_page = DashboardController
+        self.launch_current_page()
+
+    def click_notification_button(self, event):
+        self.current_page = NotificationPage
         self.launch_current_page()
 
     def bind_view(self):

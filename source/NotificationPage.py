@@ -2,16 +2,20 @@ import tkinter as tk
 from tkinter import ttk
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.pyplot as plt
-from source.Header import Header
-from source.Transaction import Transaction
 import decimal
 
-class NotificationPage():
-    def __init__(self, overview) :
-        self.overview = overview
-        self.header = Header()
+class NotificationPage(tk.Frame):
+    def __init__(self, parent, header, user_id):
+        super().__init__(
+            parent,
+            bg = "#FFFFFF"
+        )
+        self.parent = parent
+        self.header = header
+        self.user_id = user_id
+        self.main()
 
-    def example_add(self) :
+    def example_add(self):
         error_popup = tk.Toplevel()
         error_popup.title("Erreur")
         error_popup.geometry("400x100")
@@ -22,20 +26,10 @@ class NotificationPage():
         error_button.pack(side=tk.TOP, pady=10)
         error_popup.mainloop()
 
-    def example_account(self, window) :
-        self.clear(window)
-        self.overview.run(window, "Djibril", "Mimouni")
+    def main(self):
+        self.place(relx=0.5, rely=0.45, relwidth=0.8, relheight=0.7, anchor='center')
 
-    def example_search(self) :
-        print("aller vers la recherche")
-
-    def run(self, window, first_name, last_name, notifications):
-        self.header.run(window, first_name, last_name, self.example_add, lambda : self.example_account(window), self.example_search)
-
-        window.notif = tk.Frame(window.content, bg="#FFFFFF")
-        window.notif.place(relx=0.5, rely=0.45, relwidth=0.8, relheight=0.7, anchor='center')
-
-        treeview = ttk.Treeview(window.notif)
+        treeview = ttk.Treeview(self)
 
         style = ttk.Style()
         style.configure("Treeview.Heading", font=(None, 30))
@@ -43,7 +37,7 @@ class NotificationPage():
 
         treeview.heading("#0", text="Notifications", anchor=tk.CENTER)
 
-        scrollbar = ttk.Scrollbar(window.notif, orient="vertical", command=treeview.yview)
+        scrollbar = ttk.Scrollbar(self, orient="vertical", command=treeview.yview)
 
         # Configure the Treeview to use the scrollbar
         treeview.configure(yscrollcommand=scrollbar.set)
@@ -55,6 +49,3 @@ class NotificationPage():
             treeview.insert(parent="", index=tk.END, text=notifications[-1-i])
 
         treeview.pack(fill=tk.BOTH, expand=True)
-
-    def clear(self, window) :
-        self.header.clear_page(window)

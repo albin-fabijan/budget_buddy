@@ -7,18 +7,20 @@ from .DashboardView import DashboardView
 from .DashboardModel import DashboardModel
 
 class DashboardController(Controller):
-    def __init__(self, parent, user_id):
+    def __init__(self, parent, header, user_id):
         super().__init__(
             parent,
             DashboardView(parent),
             DashboardModel()
         )
+        self.header = header
         self.user_id = user_id
         self.view.main()
         self.set_account_name()
         self.create_latest_transaction_labels()
         self.create_active_alerts()
         self.plot_graph()
+        self.bind_view()
 
     def set_account_name(self):
         first_name = self.model.get_user_first_name(self.user_id)
@@ -78,3 +80,9 @@ class DashboardController(Controller):
         plt.close()
 
         self.view.draw_graph(fig)
+
+    def bind_view(self):
+        self.view.button.bind(
+            "<ButtonRelease-1>",
+            self.header.click_notification_button
+        )
