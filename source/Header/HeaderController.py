@@ -11,11 +11,13 @@ class HeaderController(Controller):
             HeaderView(parent),
             HeaderModel()
         )
+
         self.view.main()
         self.set_user_name()
         self.bind_view()
 
-        self.current_page = None
+        self.current_page = DashboardController
+        self.launch_current_page()
 
     def set_user_name(self):
         first_name = self.model.get_user_first_name(self.parent.user_id)
@@ -30,11 +32,17 @@ class HeaderController(Controller):
     def click_logout_button(self, event):
         self.parent.launch_page("login")
 
-    def click_button_two(self, event):
-        self.current_page = DashboardController(
+    def launch_current_page(self):
+        for child in self.view.content_frame.winfo_children():
+            child.destroy()
+        self.current_page(
             self.view.content_frame,
             self.parent.user_id
         )
+
+    def click_button_two(self, event):
+        self.current_page = DashboardController
+        self.launch_current_page()
 
     def bind_view(self):
         self.view.logout_button.bind(
