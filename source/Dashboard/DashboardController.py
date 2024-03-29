@@ -82,7 +82,8 @@ class DashboardController(Controller):
         self.view.draw_graph(fig)
 
     def bind_view(self):
-        self.view.button.bind(
-            "<ButtonRelease-1>",
-            self.header.click_notification_button
-        )
+        if hasattr(self.view, "button"):
+            self.view.button.bind(
+                "<ButtonRelease-1>",
+                self.header.click_notification_button
+            )

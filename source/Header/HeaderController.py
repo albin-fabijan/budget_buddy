@@ -2,7 +2,7 @@ from ..Controller import Controller
 from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
 from ..Dashboard.DashboardController import DashboardController
-from ..NotificationPage import NotificationPage
+from ..Notifications.NotificationsController import NotificationsController
 
 
 class HeaderController(Controller):
@@ -47,7 +47,7 @@ class HeaderController(Controller):
         self.launch_current_page()
 
     def click_notification_button(self, event):
-        self.current_page = NotificationPage
+        self.current_page = NotificationsController
         self.launch_current_page()
 
     def bind_view(self):
