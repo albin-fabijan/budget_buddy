@@ -2,8 +2,7 @@ import datetime
 import decimal
 import tkinter as tk
 from tkinter import ttk
-# from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-# import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 # from source.Transaction import Transaction
 # from source.NotificationPage import NotificationPage
 # from source.displayaddtransaction import displayaddtransaction
@@ -18,15 +17,10 @@ class DashboardView(tk.Frame):
 
     def main(self):
         self.place(relx=0.05, rely=0.1, relwidth=0.65, relheight=0.35)
-
         self.create_account_frame()
         self.create_alerts_frame()
-
-        self.graph = tk.Frame(self.parent, bg = "#007DB2")
-        self.graph.place(relx=0.05, rely=0.5, relwidth=0.9, relheight=0.3)
-
-        self.graph_frame = tk.Frame(self.graph, bg = "#FFFFFF")        
-        self.graph_frame.place(relx=0.002, rely=0.01, relwidth=0.996, relheight=0.98)
+        self.create_account_frame()
+        self.create_graph_frame()
 
     def create_account_frame(self):
         self.account_frame = tk.Frame(self, bg = "#FFFFFF")        
@@ -147,3 +141,15 @@ class DashboardView(tk.Frame):
                 rely = 0.35 + (0.15 * (i + 1)),
                 anchor = "ne"
             )
+
+    def create_graph_frame(self):
+        self.graph = tk.Frame(self.parent, bg = "#007DB2")
+        self.graph.place(relx=0.05, rely=0.5, relwidth=0.9, relheight=0.3)
+
+        self.graph_frame = tk.Frame(self.graph, bg = "#FFFFFF")        
+        self.graph_frame.place(relx=0.002, rely=0.01, relwidth=0.996, relheight=0.98)
+
+    def draw_graph(self, graph):
+        canvas = FigureCanvasTkAgg(graph, master=self.graph_frame)
+        canvas.draw()
+        canvas.get_tk_widget().pack()

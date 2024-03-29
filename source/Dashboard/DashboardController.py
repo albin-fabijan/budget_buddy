@@ -1,5 +1,7 @@
 import decimal
 
+import matplotlib.pyplot as plt
+
 from ..Controller import Controller
 from .DashboardView import DashboardView
 from .DashboardModel import DashboardModel
@@ -16,6 +18,7 @@ class DashboardController(Controller):
         self.set_account_name()
         self.create_latest_transaction_labels()
         self.create_active_alerts()
+        self.view.draw_graph(self.plot_graph())
 
     def set_account_name(self):
         first_name = self.model.get_user_first_name(self.user_id)
@@ -54,3 +57,26 @@ class DashboardController(Controller):
         notifications = self.get_notable_transactions()
         if len(notifications) > 0:
             self.view.create_active_alerts(notifications)
+
+    def plot_graph(self):
+        fig, ax = plt.subplots(figsize=(13.15, 5.81))
+        dates = []
+        amounts = []
+        bar_colors = []
+        transactions = self.model.get_this_weeks_transactions(self.user_id)
+        for transaction in transactions:
+            dates.append(transaction[4])
+            if transaction[3] < 0:
+                amounts.append(transaction[3] * -1)
+                bar_colors.append("tab:red")
+            else:
+                amounts.append(transaction[3])
+                bar_colors.append("tab:blue")
+        print(dates)
+        print(amounts)
+        print(bar_colors)
+        ax.bar(dates, amounts, color = bar_colors)
+        ax.set_ylabel("en €")
+        ax.set_title("Dépenses et Revenus")
+
+        return fig
