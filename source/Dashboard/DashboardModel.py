@@ -28,3 +28,18 @@ class DashboardModel(Model):
         connection.close()
 
         return last_name[0][0]
+
+    def get_latest_transactions(self, user_id):
+        connection = self.connect()
+        cursor = connection.cursor()
+
+        cursor.execute(
+            f"SELECT * FROM transaction WHERE u_id = {user_id} "
+            f"ORDER BY t_date DESC LIMIT 3;"
+        )
+        transactions = cursor.fetchall()
+
+        cursor.close()
+        connection.close()
+
+        return transactions

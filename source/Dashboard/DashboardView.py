@@ -1,3 +1,5 @@
+import datetime
+import decimal
 import tkinter as tk
 from tkinter import ttk
 # from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -5,7 +7,6 @@ from tkinter import ttk
 # from source.Transaction import Transaction
 # from source.NotificationPage import NotificationPage
 # from source.displayaddtransaction import displayaddtransaction
-# import decimal
 
 class DashboardView(tk.Frame):
     def __init__(self, parent):
@@ -41,3 +42,45 @@ class DashboardView(tk.Frame):
             font=('Arial', 20),
         )
         self.account_name.place(relx=0.03, rely=0.1)
+
+    def create_latest_transaction_labels(self, transactions):
+        for i, transaction in enumerate(transactions):
+            transaction_date = tk.Label(
+                self.account_frame,
+                text = transaction[4].strftime("%x"),
+                bg = "#FFFFFF",
+                font = ("Arial", 15),
+            )
+            transaction_date.place(
+                relx = 0.03,
+                rely = 0.35 + (0.15 * (i + 1))
+            )
+
+            transaction_name = tk.Label(
+                self.account_frame,
+                text = transaction[1],
+                bg = "#FFFFFF",
+                font = ("Arial", 15)
+            )
+            transaction_name.place(
+                relx = 0.2,
+                rely = 0.35 + (0.15 * (i + 1))
+            )
+
+            amount = decimal.Decimal(transaction[3])
+            amount = amount.quantize(decimal.Decimal("0.00"))
+            if amount < 0:
+                amount_text = f"{amount} €" 
+            else:
+                amount_text = f"+{amount} €"
+            transaction_amount = tk.Label(
+                self.account_frame,
+                text = amount_text,
+                bg = "#FFFFFF",
+                font = ("Arial", 15)
+            )
+            transaction_amount.place(
+                relx = 0.97,
+                rely = 0.35 + (0.15 * (i + 1)),
+                anchor = "ne"
+            )
