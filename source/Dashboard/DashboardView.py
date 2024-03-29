@@ -7,7 +7,7 @@ from tkinter import ttk
 # from source.displayaddtransaction import displayaddtransaction
 # import decimal
 
-class Overview(tk.Frame):
+class DashboardView(tk.Frame):
     def __init__(self, parent):
         self.parent = parent
         super().__init__(

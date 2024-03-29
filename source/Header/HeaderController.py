@@ -1,7 +1,7 @@
 from ..Controller import Controller
 from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
-from ..Overview import Overview
+from ..Dashboard.DashboardView import DashboardView
 
 
 class HeaderController(Controller):
@@ -31,7 +31,7 @@ class HeaderController(Controller):
         self.parent.launch_page("login")
 
     def click_button_two(self, event):
-        self.current_page = Overview(self.view.content_frame)
+        self.current_page = DashboardView(self.view.content_frame)
         self.current_page.main()
 
     def bind_view(self):
