@@ -1,6 +1,7 @@
 from ..Controller import Controller
 from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
+from ..Overview import Overview
 
 
 class HeaderController(Controller):
@@ -13,6 +14,8 @@ class HeaderController(Controller):
         self.view.main()
         self.set_user_name()
         self.bind_view()
+
+        self.current_page = None
 
     def set_user_name(self):
         first_name = self.model.get_user_first_name(self.parent.user_id)
@@ -27,6 +30,10 @@ class HeaderController(Controller):
     def click_logout_button(self, event):
         self.parent.launch_page("login")
 
+    def click_button_two(self, event):
+        self.current_page = Overview(self.view.content_frame)
+        self.current_page.main()
+
     def bind_view(self):
         self.view.logout_button.bind(
             "<ButtonRelease-1>",
@@ -39,7 +46,7 @@ class HeaderController(Controller):
         )
         self.view.button2.bind(
             "<ButtonRelease-1>",
-            self.click_placeholder
+            self.click_button_two
         )
 
         self.view.button3.bind(
