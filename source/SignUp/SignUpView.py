@@ -5,12 +5,8 @@ from tkinter import messagebox
 class SignUpView(tk.Frame):
     def __init__(self, parent):
         self.parent = parent
-        self.width = 700
-        self.height = 850
         super().__init__(
             self.parent,
-            width = self.width,
-            height = self.height
         )
 
     def main(self):
@@ -23,48 +19,52 @@ class SignUpView(tk.Frame):
         self.create_signup_button()
 
     def place_frame(self):
-        x = (self.width / 2) / self.parent.width
-
         self.config(background='#72D5FF')
-        self.place(relx=x, y=0)
+        self.place(
+            anchor=tk.CENTER,
+            relheight = 1,
+            relwidth = 0.5,
+            relx = 0.5,
+            rely = 0.5
+        )
 
     def create_titletext(self):
         text_label = tk.Label(
             self,
-            text="           inscription :           ",
-            font=("Arial", 40),
+            text="inscription :",
+            font=("Arial", 26),
             bg='#72D5FF'
         )
         text_label.pack(side=tk.TOP, pady=20)
 
     def create_firstname(self):
-        self.first_name_entry = tk.Entry(self, font=("Arial", 26))
+        self.first_name_entry = tk.Entry(self, font=("Arial", 20))
         additional_text = tk.Label(
             self,
             text="Nom :",
-            font=("Arial", 26),
-            bg='#72D5FF'
+            font=("Arial", 20),
+            bg='#72D5FF',
         )
         additional_text.pack(side=tk.TOP, pady=10)
         self.first_name_entry.pack(side=tk.TOP, pady=5)
 
     def create_lastname(self):
-        self.last_name_entry = tk.Entry(self, font=("Arial", 26))
+        self.last_name_entry = tk.Entry(self, font=("Arial", 20))
         additional_text = tk.Label(
             self,
             text="Prénom :",
-            font=("Arial", 26),
+            font=("Arial", 20),
             bg='#72D5FF'
         )
         additional_text.pack(side=tk.TOP, pady=10)
         self.last_name_entry.pack(side=tk.TOP, pady=5)
     
     def create_email(self):
-        self.email_entry = tk.Entry(self, font=("Arial", 26))
+        self.email_entry = tk.Entry(self, font=("Arial", 20))
         additional_text = tk.Label(
             self,
             text="Email :",
-            font=("Arial", 26),
+            font=("Arial", 20),
             bg='#72D5FF'
         )
         additional_text.pack(side=tk.TOP, pady=10)
@@ -73,13 +73,13 @@ class SignUpView(tk.Frame):
     def create_password(self):
         self.password_entry = tk.Entry(
             self,
-            font=("Arial", 26),
+            font=("Arial", 20),
             show="*"
         )
         additional_text = tk.Label(
             self,
             text="Mot de passe :",
-            font=("Arial", 26),
+            font=("Arial", 20),
             bg='#72D5FF'
         )
         additional_text.pack(side=tk.TOP, pady=10)
@@ -89,7 +89,7 @@ class SignUpView(tk.Frame):
         self.signup_button = tk.Button(
             self,
             text="Inscription",
-            font=("Arial", 26),
+            font=("Arial", 20),
             bg='white',
             width=10,
             height=2,

@@ -19,7 +19,13 @@ class LoginView(tk.Frame):
 
     def place_frame(self):
         self.config(background='#72D5FF')
-        self.pack(fill=tk.Y, expand=True, anchor=tk.CENTER)
+        self.place(
+            anchor=tk.CENTER,
+            relheight = 1,
+            relwidth = 0.5,
+            relx = 0.5,
+            rely = 0.5
+        )
 
     def create_titletext(self):
         text_label = tk.Label(
