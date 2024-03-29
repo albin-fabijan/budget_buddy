@@ -7,8 +7,8 @@ from .Header.HeaderController import HeaderController
 class RootWindow(tk.Tk):
     def __init__(self):
         super().__init__()
-        self.width = 1440
-        self.height = 1024
+        self.width = 1280
+        self.height = 720
         self.geometry(f"{self.width}x{self.height}")
         self.resizable(False, False)
         self.title("Akajou Accounts")
