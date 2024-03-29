@@ -37,7 +37,6 @@ class DashboardView(tk.Frame):
         self.account_frame.place(relx=0.004, rely=0.01, relwidth=0.992, relheight=0.98)
 
         self.account_name = tk.Label(self.account_frame,
-            text="Compte de firstname lastname", # A SET DANS FRAME
             bg="#FFFFFF",
             font=('Arial', 20),
         )

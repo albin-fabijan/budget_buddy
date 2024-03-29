@@ -31,7 +31,10 @@ class HeaderController(Controller):
         self.parent.launch_page("login")
 
     def click_button_two(self, event):
-        self.current_page = DashboardController(self.view.content_frame)
+        self.current_page = DashboardController(
+            self.view.content_frame,
+            self.parent.user_id
+        )
 
     def bind_view(self):
         self.view.logout_button.bind(
