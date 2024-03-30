@@ -75,9 +75,20 @@ class AddTransactionController(Controller):
             
         return amount
 
+    def escape_quotes(self, string):
+        new_string = []
+        for character in string:
+            if character == "\"" or character == "'":
+                new_string.append("\\" + character)
+                continue
+            new_string.append(character)
+        return ''.join(new_string)
+
     def add_transaction(self):
         t_name = self.view.name_entry.get()
+        t_name = self.escape_quotes(t_name)
         t_description = self.view.description_entry.get("1.0", "end")[:-1]
+        t_description = self.escape_quotes(t_description)
         t_amount = self.get_amount()
         date_format = "%Y-%m-%d %H:%M:%S"
         t_date = datetime.datetime.now().strftime(date_format)
