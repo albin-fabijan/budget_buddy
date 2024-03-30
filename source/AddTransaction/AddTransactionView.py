@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 
 class AddTransactionView(tk.Toplevel):
     def __init__(self, parent):
@@ -9,6 +10,7 @@ class AddTransactionView(tk.Toplevel):
         self.parent = parent
         self.title("Add transaction")
         self.geometry("428x550")
+        self.grab_set()
 
     def main(self):
         self.create_frame()
@@ -16,7 +18,7 @@ class AddTransactionView(tk.Toplevel):
         self.create_amount()
         self.create_type()
         self.create_description()
-        self.create_addbutton()
+        self.create_add_button()
 
     def create_frame(self):
         self.frame = tk.Frame(
@@ -88,8 +90,8 @@ class AddTransactionView(tk.Toplevel):
         )
         self.description_entry.pack(side=tk.TOP, pady=1)
 
-    def create_addbutton(self):
-        add_button = tk.Button(
+    def create_add_button(self):
+        self.add_button = tk.Button(
             self.frame,
             text="Ajouter",
             font=("Arial", 20),
@@ -97,4 +99,7 @@ class AddTransactionView(tk.Toplevel):
             width=10,
             height=1,
         )
-        add_button.pack(side=tk.TOP, pady=1)
+        self.add_button.pack(side=tk.TOP, pady=1)
+
+    def create_message_box(self, title, description):
+        messagebox.showinfo(title, description, parent=self)
