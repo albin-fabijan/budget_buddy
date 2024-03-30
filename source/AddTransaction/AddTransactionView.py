@@ -1,16 +1,14 @@
 import tkinter as tk
 
-class displayaddtransaction(tk.Toplevel):
-    def __init__(self, parent, user_id):
+class AddTransactionView(tk.Toplevel):
+    def __init__(self, parent):
         super().__init__(
             parent,
             bg = "#72D5FF"
         )
         self.parent = parent
-        self.user_id = user_id
         self.title("Add transaction")
         self.geometry("428x550")
-        self.main()
 
     def main(self):
         self.create_frame()
