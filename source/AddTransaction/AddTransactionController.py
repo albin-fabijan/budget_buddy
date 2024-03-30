@@ -43,6 +43,24 @@ class AddTransactionController(Controller):
                 "La valeur doit être un nombre entier ou décimal avec '.'"
             )
 
+    def set_category_on_keystroke(self, event):
+        transaction_type = {
+            "+": 0,
+            "-": 1
+        }
+
+        amount_entry = self.view.amount_entry.get()
+        if len(amount_entry) == 0:
+            return
+
+        character = amount_entry[0]
+        if character not in transaction_type:
+            return
+
+        self.view.selected_option.set(
+            self.view.options[transaction_type[character]]
+        )
+
     def click_add_button(self, event):
         message = self.verify_all()
         if message is None:
@@ -51,3 +69,4 @@ class AddTransactionController(Controller):
 
     def bind_view(self):
         self.view.add_button.bind("<ButtonRelease-1>", self.click_add_button)
+        self.view.amount_entry.bind("<Key>", self.set_category_on_keystroke)

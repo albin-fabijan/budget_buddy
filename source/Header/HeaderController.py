@@ -3,7 +3,7 @@ from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
 from ..Dashboard.DashboardController import DashboardController
 from ..Notifications.NotificationsController import NotificationsController
-from ..AddTransaction.displayaddtransaction import displayaddtransaction
+from ..AddTransaction.AddTransactionController import AddTransactionController
 
 
 class HeaderController(Controller):
@@ -35,7 +35,11 @@ class HeaderController(Controller):
         self.parent.launch_page("login")
 
     def click_add_transaction(self, event):
-        displayaddtransaction(self.parent, self.parent.user_id)
+        AddTransactionController(
+            self.parent,
+            self,
+            self.parent.user_id
+        )
 
     def launch_current_page(self):
         for child in self.view.content_frame.winfo_children():
