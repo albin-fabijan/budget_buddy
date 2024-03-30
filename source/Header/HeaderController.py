@@ -3,6 +3,7 @@ from .HeaderView import HeaderView
 from .HeaderModel import HeaderModel
 from ..Dashboard.DashboardController import DashboardController
 from ..Notifications.NotificationsController import NotificationsController
+from ..AddTransaction.displayaddtransaction import displayaddtransaction
 
 
 class HeaderController(Controller):
@@ -33,6 +34,9 @@ class HeaderController(Controller):
     def click_logout_button(self, event):
         self.parent.launch_page("login")
 
+    def click_add_transaction(self, event):
+        displayaddtransaction(self.parent, self.parent.user_id)
+
     def launch_current_page(self):
         for child in self.view.content_frame.winfo_children():
             child.destroy()
@@ -58,7 +62,7 @@ class HeaderController(Controller):
 
         self.view.button1.bind(
             "<ButtonRelease-1>",
-            self.click_placeholder
+            self.click_add_transaction
         )
         self.view.button2.bind(
             "<ButtonRelease-1>",
