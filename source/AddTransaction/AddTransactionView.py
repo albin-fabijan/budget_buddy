@@ -63,7 +63,7 @@ class AddTransactionView(tk.Toplevel):
         )
         additional_text.pack(side=tk.TOP, pady=1)
 
-        self.options = ["Revenu", "Dépenses"]
+        self.options = ["Revenu", "Dépense"]
         self.selected_option = tk.StringVar(self.frame)
         self.selected_option.set(self.options[0])
         dropdown = tk.OptionMenu(
@@ -86,7 +86,8 @@ class AddTransactionView(tk.Toplevel):
             self.frame,
             font=("Arial", 20),
             height=5,
-            width=20
+            width=20,
+            wrap=tk.WORD
         )
         self.description_entry.pack(side=tk.TOP, pady=1)
 
