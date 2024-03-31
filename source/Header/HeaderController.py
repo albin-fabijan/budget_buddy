@@ -4,6 +4,7 @@ from .HeaderModel import HeaderModel
 from ..Dashboard.DashboardController import DashboardController
 from ..Notifications.NotificationsController import NotificationsController
 from ..AddTransaction.AddTransactionController import AddTransactionController
+from ..TransactionList.TransactionListController import TransactionListController
 
 
 class HeaderController(Controller):
@@ -50,8 +51,12 @@ class HeaderController(Controller):
             self.parent.user_id
         )
 
-    def click_button_two(self, event):
+    def launch_dashboard(self, event):
         self.current_page = DashboardController
+        self.launch_current_page()
+
+    def launch_transaction_list(self, event):
+        self.current_page = TransactionListController
         self.launch_current_page()
 
     def click_notification_button(self, event):
@@ -70,10 +75,10 @@ class HeaderController(Controller):
         )
         self.view.button2.bind(
             "<ButtonRelease-1>",
-            self.click_button_two
+            self.launch_dashboard
         )
 
         self.view.button3.bind(
             "<ButtonRelease-1>",
-            self.click_placeholder
+            self.launch_transaction_list
         )
