@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import messagebox
+
 
 class TransactionFilterView(tk.Toplevel):
     def __init__(self, parent):
@@ -71,14 +73,14 @@ class TransactionFilterView(tk.Toplevel):
         from_label = tk.Label(self, text="De", font=("Arial", 14), bg='#72D5FF')
         from_label.place(x=120, y=250)
 
-        self.date_min_entry = tk.Entry(self, font=("Arial", 16), width=7)
+        self.date_min_entry = tk.Entry(self, font=("Arial", 16), width=9)
         self.date_min_entry.place(x=150, y=250)
 
         to_label = tk.Label(self, text="à", font=("Arial", 14), bg='#72D5FF')
-        to_label.place(x=230, y=250)
+        to_label.place(x=265, y=250)
 
-        self.date_max_entry = tk.Entry(self, font=("Arial", 16), width=7)
-        self.date_max_entry.place(x=250, y=250)
+        self.date_max_entry = tk.Entry(self, font=("Arial", 16), width=9)
+        self.date_max_entry.place(x=280, y=250)
 
     def create_erase_button(self):
         self.erase_button = tk.Button(
@@ -95,3 +97,6 @@ class TransactionFilterView(tk.Toplevel):
             font=("Arial", 16),
         )
         self.apply_button.place(x=50, y=350)
+
+    def create_message_box(self, title, description):
+        messagebox.showinfo(title, description, parent=self)
