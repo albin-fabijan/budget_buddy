@@ -12,7 +12,7 @@ class TransactionListView(tk.Frame):
     def main(self):
         self.create_frame()
         self.create_treeview()
-        self.create_filterbutton()
+        self.create_filter_button()
         self.create_add_button()
 
     def create_frame(self):
@@ -37,7 +37,7 @@ class TransactionListView(tk.Frame):
         self.tree.column("4", width=30)
         self.tree.place(relx=0.2, rely=0.25, width=730, height=500)
 
-    def create_filterbutton(self):
+    def create_filter_button(self):
         self.filter_button = tk.Button(
             self.parent,
             text="Filtrer",

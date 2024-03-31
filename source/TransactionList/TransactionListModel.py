@@ -4,13 +4,17 @@ class TransactionListModel(Model):
     def __init__(self):
         super().__init__()
 
-    def get_all_transactions(self, user_id):
+    def get_all_transactions(
+        self,
+        user_id,
+        sort_value
+    ):
         connection = self.connect()
         cursor = connection.cursor()
 
         cursor.execute(
             f"SELECT * FROM transaction WHERE u_id = {user_id} "
-            f"ORDER BY t_date DESC;"
+            f"{sort_value};"
         )
         transactions = cursor.fetchall()
 
