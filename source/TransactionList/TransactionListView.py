@@ -20,20 +20,21 @@ class TransactionListView(tk.Frame):
 
     def create_treeview(self):
         self.tree = ttk.Treeview(self.parent)
-        self.tree["columns"] = ("1", "2", "3")
+        self.tree["columns"] = ("1", "2", "3", "4")
         self.tree.column("#0", width=0, stretch=tk.NO)
-        self.tree.column("1", anchor=tk.W, width=100)
-        self.tree.column("2", anchor=tk.W, width=100)
-        self.tree.column("3", anchor=tk.W, width=100)
+        for column in self.tree["columns"]:
+            self.tree.column(column, anchor = tk.W, width = 100)
 
         self.tree.heading("#0", text="", anchor=tk.W)
         self.tree.heading("1", text="Date", anchor=tk.W)
         self.tree.heading("2", text="Nom", anchor=tk.W)
-        self.tree.heading("3", text="Montant", anchor=tk.W)
+        self.tree.heading("3", text="Description", anchor=tk.W)
+        self.tree.heading("4", text="Montant", anchor=tk.W)
 
         self.tree.column("1", width=10)
         self.tree.column("2", width=20)
-        self.tree.column("3", width=300)
+        self.tree.column("3", width=270)
+        self.tree.column("4", width=30)
         self.tree.place(relx=0.2, rely=0.25, width=730, height=500)
 
     def create_filterbutton(self):
