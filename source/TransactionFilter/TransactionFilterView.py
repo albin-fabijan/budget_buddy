@@ -14,7 +14,6 @@ class TransactionFilterView(tk.Toplevel):
     def main(self):
         self.sort_var = tk.StringVar(value="Récent → Ancien")
         self.type_var = tk.StringVar(value="...")
-        self.date_var = tk.IntVar(value=0)
 
         self.create_sort()
         self.create_type()
@@ -69,30 +68,30 @@ class TransactionFilterView(tk.Toplevel):
         )
         date_label.place(x=30, y=250)
 
-        de_label = tk.Label(self, text="De", font=("Arial", 14), bg='#72D5FF')
-        de_label.place(x=120, y=250)
+        from_label = tk.Label(self, text="De", font=("Arial", 14), bg='#72D5FF')
+        from_label.place(x=120, y=250)
 
-        self.date_minentry = tk.Entry(self, font=("Arial", 16), width=7)
-        self.date_minentry.place(x=150, y=250)
+        self.date_min_entry = tk.Entry(self, font=("Arial", 16), width=7)
+        self.date_min_entry.place(x=150, y=250)
 
-        a_label = tk.Label(self, text="à", font=("Arial", 14), bg='#72D5FF')
-        a_label.place(x=230, y=250)
+        to_label = tk.Label(self, text="à", font=("Arial", 14), bg='#72D5FF')
+        to_label.place(x=230, y=250)
 
-        self.date_maxentry = tk.Entry(self, font=("Arial", 16), width=7)
-        self.date_maxentry.place(x=250, y=250)
+        self.date_max_entry = tk.Entry(self, font=("Arial", 16), width=7)
+        self.date_max_entry.place(x=250, y=250)
 
     def create_erase_button(self):
-        erase_button = tk.Button(
+        self.erase_button = tk.Button(
             self,
             text="Effacer",
             font=("Arial", 16),
         )
-        erase_button.place(x=250, y=350)
+        self.erase_button.place(x=250, y=350)
 
     def create_apply_button(self):
-        apply_button = tk.Button(
+        self.apply_button = tk.Button(
             self,
             text="Appliquer",
             font=("Arial", 16),
         )
-        apply_button.place(x=50, y=350)
+        self.apply_button.place(x=50, y=350)
