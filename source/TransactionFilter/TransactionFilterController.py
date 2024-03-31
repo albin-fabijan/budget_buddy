@@ -4,18 +4,17 @@ from tkinter import END
 
 from ..Controller import Controller
 from .TransactionFilterView import TransactionFilterView
-from .TransactionFilterModel import TransactionFilterModel
 
 
 class TransactionFilterController(Controller):
-    def __init__(self, parent, header, user_id):
+    def __init__(self, parent, user_id, transaction_list):
         super().__init__(
             parent,
             TransactionFilterView(parent),
             None
         )
-        self.header = header
         self.user_id = user_id
+        self.transaction_list = transaction_list
         self.view.main()
         self.bind_view()
 
@@ -61,7 +60,6 @@ class TransactionFilterController(Controller):
 
         return False
 
-
     def convert_to_sql_date_range(self, min_date, max_date):
         sql_date_format = "%Y-%m-%d 00:00:00"
 
@@ -71,7 +69,10 @@ class TransactionFilterController(Controller):
         max_date = datetime.strptime(max_date, "%d/%m/%Y")
         max_date = max_date.strftime(sql_date_format)
 
-        date_range = f"AND {min_date} < t_date < {max_date} "
+        date_range = (
+            f"AND '{min_date}' < t_date "
+            f"AND t_date < '{max_date}' "
+        )
         return date_range
 
     def apply_filter_button(self, event):
@@ -99,7 +100,10 @@ class TransactionFilterController(Controller):
         selected_sort = sort_values[self.view.sort_var.get()]
 
         self.view.destroy() 
-        return (selected_type, date_range, selected_sort)
+        self.transaction_list.type_value = selected_type
+        self.transaction_list.date_range = date_range
+        self.transaction_list.sort_value = selected_sort
+        self.transaction_list.display_transactions_in_treeview()
 
     def bind_view(self):
         self.view.erase_button.bind(

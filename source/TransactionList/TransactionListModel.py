@@ -7,6 +7,8 @@ class TransactionListModel(Model):
     def get_all_transactions(
         self,
         user_id,
+        type_value,
+        date_range,
         sort_value
     ):
         connection = self.connect()
@@ -14,7 +16,9 @@ class TransactionListModel(Model):
 
         cursor.execute(
             f"SELECT * FROM transaction WHERE u_id = {user_id} "
-            f"{sort_value};"
+            f"{type_value}"
+            f"{date_range}"
+            f"{sort_value}"
         )
         transactions = cursor.fetchall()
 

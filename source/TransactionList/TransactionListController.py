@@ -17,22 +17,25 @@ class TransactionListController(Controller):
         self.header = header
         self.user_id = user_id
         self.type_value = ""
-        self.date_value = ""
+        self.date_range = ""
         self.sort_value = "ORDER BY t_date DESC;"
         self.view.main()
         self.display_transactions_in_treeview()
         self.bind_view()
 
     def display_transactions_in_treeview(self):
+        self.view.tree.delete(*self.view.tree.get_children())
         transactions = self.model.get_all_transactions(
             self.user_id,
+            self.type_value,
+            self.date_range,
             self.sort_value
         )
         for i, transaction in enumerate(transactions):
             name = transaction[1]
             description = transaction[2]
             amount = f"{transaction[3]} €"
-            date = transaction[4].strftime("%x %X")
+            date = transaction[4].strftime("%d/%m/%Y %X")
 
             transaction_info = (
                 date,
@@ -50,8 +53,8 @@ class TransactionListController(Controller):
     def click_filter_button(self, event):
         TransactionFilterController(
             self.parent,
-            self.header,
-            self.user_id
+            self.user_id,
+            self
         )
 
     def bind_view(self):

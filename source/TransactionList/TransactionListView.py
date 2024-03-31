@@ -31,10 +31,10 @@ class TransactionListView(tk.Frame):
         self.tree.heading("3", text="Description", anchor=tk.W)
         self.tree.heading("4", text="Montant", anchor=tk.W)
 
-        self.tree.column("1", width=10)
+        self.tree.column("1", width=11)
         self.tree.column("2", width=20)
         self.tree.column("3", width=270)
-        self.tree.column("4", width=30)
+        self.tree.column("4", width=20)
         self.tree.place(relx=0.2, rely=0.25, width=730, height=500)
 
     def create_filter_button(self):
