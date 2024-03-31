@@ -34,8 +34,8 @@ class TransactionFilterView(tk.Toplevel):
         sort_options = [
             "Récent → Ancien",
             "Ancient → Récent",
-            "Montant croissant",
             "Montant décroissant",
+            "Montant croissant",
         ]
         self.sort_select = tk.OptionMenu(
             self,
