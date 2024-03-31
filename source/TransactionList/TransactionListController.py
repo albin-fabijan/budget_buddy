@@ -15,6 +15,7 @@ class TransactionListController(Controller):
         self.user_id = user_id
         self.view.main()
         self.display_transactions_in_treeview()
+        self.bind_view()
 
     def display_transactions_in_treeview(self):
         transactions = self.model.get_all_transactions(self.user_id)
@@ -36,3 +37,9 @@ class TransactionListController(Controller):
                 text=i,
                 values=transaction_info
             )
+
+    def bind_view(self):
+        self.view.add_button.bind(
+            "<ButtonRelease-1>",
+            self.header.click_add_transaction
+        )
