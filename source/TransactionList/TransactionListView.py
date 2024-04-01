@@ -16,7 +16,13 @@ class TransactionListView(tk.Frame):
         self.create_add_button()
 
     def create_frame(self):
-        self.place(relx=0.2, rely=0.25 , width=730, height=500)
+        self.place(
+            anchor=tk.CENTER,
+            relx=0.5,
+            rely=0.5,
+            width=730,
+            height=500
+        )
 
     def create_treeview(self):
         self.tree = ttk.Treeview(self.parent)
@@ -35,7 +41,22 @@ class TransactionListView(tk.Frame):
         self.tree.column("2", width=20)
         self.tree.column("3", width=270)
         self.tree.column("4", width=20)
-        self.tree.place(relx=0.2, rely=0.25, width=730, height=500)
+
+        self.scrollbar = tk.Scrollbar(
+            self.tree,
+            orient=tk.VERTICAL,
+            command=self.tree.yview
+        )
+        self.scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        self.tree.config(yscrollcommand=self.scrollbar.set)
+        self.tree.place(
+            anchor=tk.CENTER,
+            relx=0.5,
+            rely=0.5,
+            width=730,
+            height=500
+        )
 
     def create_filter_button(self):
         self.filter_button = tk.Button(
@@ -45,7 +66,7 @@ class TransactionListView(tk.Frame):
             width=10,
             height=1
         )
-        self.filter_button.place(x=260, y=120)
+        self.filter_button.place(x=274, y=32)
 
     def create_add_button(self):
         self.add_button = tk.Button(
@@ -55,4 +76,4 @@ class TransactionListView(tk.Frame):
             width=2,
             height=1
         )
-        self.add_button.place(x=950, y=120)
+        self.add_button.place(x=971, y=32)
