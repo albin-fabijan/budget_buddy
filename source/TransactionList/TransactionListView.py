@@ -57,6 +57,7 @@ class TransactionListView(tk.Frame):
             width=730,
             height=500
         )
+        self.tree.tag_configure("Treeview", font=("Arial", 12))
 
     def create_filter_button(self):
         self.filter_button = tk.Button(
