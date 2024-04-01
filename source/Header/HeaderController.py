@@ -29,9 +29,6 @@ class HeaderController(Controller):
             text=f"{first_name} {last_name}"
         )
 
-    def click_placeholder(self, event):
-        print(event)
-
     def click_logout_button(self, event):
         self.parent.launch_page("login")
 
