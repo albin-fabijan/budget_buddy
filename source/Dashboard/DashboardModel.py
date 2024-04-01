@@ -65,3 +65,42 @@ class DashboardModel(Model):
         connection.close()
 
         return transactions
+
+    def get_this_years_monthly_totals(self, user_id):
+        current_year = datetime.datetime.now().year
+        totals_list = []
+
+        connection = self.connect()
+        cursor = connection.cursor()
+
+        for month in range(1, 12+1):
+            month_total = {
+                "month": month,
+                "total_revenue": 0,
+                "total_spending": 0,
+            }
+
+            cursor.execute(
+                f"SELECT t_amount FROM transaction WHERE u_id = {user_id} "
+                f"AND t_amount > 0 AND MONTH(t_date) = {month} "
+                f"AND YEAR(t_date) = {current_year}"
+            )
+            revenue = cursor.fetchall()
+            for amount in revenue:
+                month_total["total_revenue"] += amount[0]
+
+            cursor.execute(
+                f"SELECT t_amount FROM transaction WHERE u_id = {user_id} "
+                f"AND t_amount < 0 AND MONTH(t_date) = {month} "
+                f"AND YEAR(t_date) = {current_year}"
+            )
+            spending = cursor.fetchall()
+            for amount in spending:
+                month_total["total_spending"] += amount[0]
+
+            totals_list.append(month_total)
+
+        cursor.close()
+        connection.close()
+
+        return totals_list
