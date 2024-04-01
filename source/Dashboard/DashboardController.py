@@ -1,3 +1,4 @@
+import datetime
 import decimal
 
 import matplotlib.pyplot as plt
@@ -62,21 +63,45 @@ class DashboardController(Controller):
 
     def plot_graph(self):
         fig, ax = plt.subplots(figsize=(13.15, 5.81))
-        dates = []
-        amounts = []
-        bar_colors = []
-        transactions = self.model.get_this_weeks_transactions(self.user_id)
-        for transaction in transactions:
-            dates.append(transaction[4].strftime("%x\n%X"))
-            if transaction[3] < 0:
-                amounts.append(transaction[3] * -1)
-                bar_colors.append("tab:red")
-            else:
-                amounts.append(transaction[3])
-                bar_colors.append("tab:blue")
-        ax.bar(dates, amounts, color = bar_colors)
-        ax.set_ylabel("en €")
-        ax.set_title("Dépenses et Revenus")
+        totals_list = self.model.get_this_years_monthly_totals(self.user_id)
+        months = [
+            "Jan",
+            "Fév",
+            "Mar",
+            "Avr",
+            "Mai",
+            "Juin",
+            "Juil",
+            "Août",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Déc"
+        ]
+        total_revenue = [month["total_revenue"] for month in totals_list]
+        total_spending = [month["total_spending"] for month in totals_list]
+
+        bar_width = 0.35
+        index = range(len(months))
+
+        ax.bar(
+            [i - bar_width / 2 for i in index],
+            total_revenue,
+            bar_width,
+            color="tab:green"
+        )
+        ax.bar(
+            [i + bar_width / 2 for i in index],
+            total_spending,
+            bar_width,
+            color="tab:red"
+        )
+
+        ax.set_ylabel("En €")
+        current_year = datetime.datetime.now().year
+        ax.set_title(f"Revenues et dépenses de {current_year}")
+        ax.set_xticks(index)
+        ax.set_xticklabels(months)
         plt.close()
 
         self.view.draw_graph(fig)

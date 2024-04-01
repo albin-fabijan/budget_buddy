@@ -75,7 +75,6 @@ class DashboardModel(Model):
 
         for month in range(1, 12+1):
             month_total = {
-                "month": month,
                 "total_revenue": 0,
                 "total_spending": 0,
             }
@@ -96,7 +95,7 @@ class DashboardModel(Model):
             )
             spending = cursor.fetchall()
             for amount in spending:
-                month_total["total_spending"] += amount[0]
+                month_total["total_spending"] += (amount[0] * -1)
 
             totals_list.append(month_total)
 
