@@ -19,18 +19,18 @@ class NotificationsController(Controller):
         self.insert_notifications()
 
     def get_notable_transactions(self):
-        transactions = self.model.get_this_weeks_transactions(self.user_id)
+        transactions = self.model.get_this_months_transactions(self.user_id)
         notable_transactions = []
 
         for transaction in transactions:
             amount_string = decimal.Decimal(transaction[3])
             amount_string = amount_string.quantize(decimal.Decimal("0.00"))
-            if transaction[3] > 2000:
+            if transaction[3] >= 2000:
                 message = (
                     f"Plafond dépassé le {transaction[4].strftime("%x")}"
                 )
                 notable_transactions.append(message)
-            elif transaction[3] < -500 or transaction[3] > 500:
+            elif transaction[3] <= -500 or transaction[3] >= 500:
                 message = (
                     f"Transaction conséquente "
                     f"le {transaction[4].strftime("%x")} "
